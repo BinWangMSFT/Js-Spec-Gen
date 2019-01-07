@@ -6,7 +6,7 @@ Represents a cell comment reply object in the workbook.
 
 | Property	   | Type	|Description| Req. Set|
 |:---------------|:--------|:----------|:----|
-|content|string|GetSet the content.|[beta](../requirement-sets/excel-api-requirement-sets.md)|
+|content|string|Gets or sets the content of the comment reply.|[beta](../requirement-sets/excel-api-requirement-sets.md)|
 |id|string|Represents the comment reply identifier. Read-only.|[beta](../requirement-sets/excel-api-requirement-sets.md)|
 |isParent|bool|Represents whether it is a comment thread or reply. Always return false here. Read-only.|[beta](../requirement-sets/excel-api-requirement-sets.md)|
 
@@ -46,14 +46,13 @@ Delete a comment reply given reply ID
 
 ```js
 Excel.run(async (context) => {
+    var comment = context.workbook.comments.getItemByReplyID("{42D7DCA6-8FA5-4CA2-B089-107DFD534F00}");
+    context.load(comment);
+    return context.sync();
 
-        var comment = context.workbook.comments.getItemByReplyID("{42D7DCA6-8FA5-4CA2-B089-107DFD534F00}");
-        context.load(comment);
-        return context.sync();
-
-        comment.replies.getItem("{42D7DCA6-8FA5-4CA2-B089-107DFD534F00}").delete();
-        return context.sync();
-});.catch(function(error) {
+    comment.replies.getItem("{42D7DCA6-8FA5-4CA2-B089-107DFD534F00}").delete();
+    return context.sync(); 
+}).catch(function(error) {
     console.log("Error: " + error);
     if (error instanceof OfficeExtension.Error) {
         console.log("Debug info: " + JSON.stringify(error.debugInfo));
@@ -90,9 +89,9 @@ Excel.run(async (context) => {
     return context.sync();
 
 }).catch(function(error) {
-		console.log("Error: " + error);
-		if (error instanceof OfficeExtension.Error) {
-			console.log("Debug info: " + JSON.stringify(error.debugInfo));
-		}
+    console.log("Error: " + error);
+    if (error instanceof OfficeExtension.Error) {
+        console.log("Debug info: " + JSON.stringify(error.debugInfo));
+    }
 });
 ```

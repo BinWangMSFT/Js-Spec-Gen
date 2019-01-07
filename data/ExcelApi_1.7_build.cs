@@ -1838,7 +1838,7 @@ namespace Microsoft.ExcelServices
 		void Delete();
 
 		/// <summary>
-		/// Get/Set the content.
+		/// Gets or sets the content of the comment.
 		/// </summary>
 		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentDispatchIds.Comment_Content)]
@@ -1947,7 +1947,7 @@ namespace Microsoft.ExcelServices
 		void Delete();
 	
 		/// <summary>
-		/// Get/Set the content.
+		/// Gets or sets the content of the comment reply.
 		/// </summary>
 		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReply_Content)]

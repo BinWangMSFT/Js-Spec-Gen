@@ -1,6 +1,6 @@
 |Object| What is new| Description|Req. Set|
 |:----|:----|:----|:----|
-|[commentReply](../markdown/commentreply.md)|_Property_ > content|GetSet the content.|beta|
+|[commentReply](../markdown/commentreply.md)|_Property_ > content|Gets or sets the content of the comment reply.|beta|
 |[commentReply](../markdown/commentreply.md)|_Property_ > id|Represents the comment reply identifier. Read-only.|beta|
 |[commentReply](../markdown/commentreply.md)|_Property_ > isParent|Represents whether it is a comment thread or reply. Always return false here. Read-only.|beta|
 |[commentReply](../markdown/commentreply.md)|_Method_ > [delete()](../markdown/commentreply.md#delete)|Deletes the comment reply.|beta|
@@ -35,7 +35,7 @@
 |[chartTrendline](../markdown/charttrendline.md)|_Property_ > showRSquared|True if the R-squared for the trendline is displayed on the chart.|1.8|
 |[chartTrendline](../markdown/charttrendline.md)|_Relationship_ > label|Represents the label of a chart trendline. Read-only.|1.8|
 |[chartLegendFormat](../markdown/chartlegendformat.md)|_Relationship_ > border|Represents the border format, which includes color, linestyle and weight. Read-only.|1.8|
-|[comment](../markdown/comment.md)|_Property_ > content|GetSet the content.|beta|
+|[comment](../markdown/comment.md)|_Property_ > content|Gets or sets the content of the comment.|beta|
 |[comment](../markdown/comment.md)|_Property_ > id|Represents the comment identifier. Read-only.|beta|
 |[comment](../markdown/comment.md)|_Property_ > isParent|Represents whether it is a comment thread or reply. Always return true here. Read-only.|beta|
 |[comment](../markdown/comment.md)|_Relationship_ > replies|Represents a collection of reply objects associated with the comment. Read-only.|beta|

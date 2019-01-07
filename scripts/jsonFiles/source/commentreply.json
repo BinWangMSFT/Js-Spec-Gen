@@ -45,7 +45,7 @@
     {
       "name": "content",
       "dataType": "string",
-      "description": "GetSet the content.",
+      "description": "Gets or sets the content of the comment reply.",
       "isReadOnly": false,
       "enumNameJs": null,
       "isCollection": false,
