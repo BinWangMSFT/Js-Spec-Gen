@@ -87,7 +87,7 @@ namespace Microsoft.ExcelServices
 
 			internal const double Event = 1.8;
 
-			internal const double CommentAPIs_Beta = 1.9;
+			internal const double CommentAPIs_Beta = beta;
 		}
 	}
 
@@ -551,7 +551,7 @@ namespace Microsoft.ExcelServices
 		/// <summary>
 		/// Represents a collection of Comments associated with the workbook. Read-only.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = WorkbookDispatchIds.Workbook_Comments)]
 		[JsonStringify()]
 		CommentCollection Comments { get; }
@@ -694,7 +694,7 @@ namespace Microsoft.ExcelServices
 		/// <summary>
 		/// Returns a collection of all the Comments objects on the worksheet. Read-only.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = WorksheetDispatchIds.Worksheet_Comments)]
 		[JsonStringify()]
 		CommentCollection Comments { get; }
@@ -1731,7 +1731,7 @@ namespace Microsoft.ExcelServices
 	/// <summary>
 	/// Represents a collection of comment objects that are part of the workbook.
 	/// </summary>
-	[ApiSet(Version = 1.9)]
+	[ApiSet(Version = beta)]
 	[ClientCallableType(CreateItemOperationName = "Add")]
 	[ClientCallableComType(Name = "ICommentCollection", InterfaceId = "c5619aec-c9a9-490f-ba4b-1a3d3199d951", CoClassName = "CommentCollection")]
 	public interface CommentCollection : IEnumerable<Comment>
@@ -1744,7 +1744,7 @@ namespace Microsoft.ExcelServices
 		/// Returns a comment identified by its ID. Read-only.
 		/// </summary>
 		/// <param name="commentId">The identifier for the comment.</param>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentDispatchIds.CommentCollection_Indexer)]
 		Comment this[string commentId] { get; }
 
@@ -1752,7 +1752,7 @@ namespace Microsoft.ExcelServices
 		/// Gets a comment based on its position in the collection.
 		/// </summary>
 		/// <param name="index">Index value of the object to be retrieved. Zero-indexed.</param>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentDispatchIds.CommentCollection_ItemAt)]
 		[ClientCallableOperation(OperationType = OperationType.Read)]
 		Comment GetItemAt(int index);
@@ -1760,7 +1760,7 @@ namespace Microsoft.ExcelServices
 		/// <summary>
 		/// Gets the number of comments in the collection.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentDispatchIds.CommentCollection_GetCount)]
 		[ClientCallableOperation(OperationType = OperationType.Read)]
 		int GetCount();
@@ -1771,7 +1771,7 @@ namespace Microsoft.ExcelServices
 		/// <param name="content">The comment content.</param>
 		/// <param name="cellAddress">Cell to insert comment to. May be an Excel Range object, or a string. If string, must contain the full address, including the sheet name</param>
 		/// <param name="contentType">Optional. Type of the comment content</param>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentDispatchIds.CommentCollection_Add)]
 		Comment Add(string content, [TypeScriptType("Excel.Range|string")] [RESTfulType(typeof(string))] object cellAddress, [Optional] ContentType contentType);
 	
@@ -1779,7 +1779,7 @@ namespace Microsoft.ExcelServices
 		/// Gets a comment related to its reply ID in the collection.
 		/// </summary>
 		/// <param name="replyId">The identifier of comment reply.</param>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentDispatchIds.CommentCollection_ItemByReplyId)]
 		[ClientCallableOperation(OperationType = OperationType.Read)]
 		Comment GetItemByReplyId(string replyId);
@@ -1788,7 +1788,7 @@ namespace Microsoft.ExcelServices
 		/// Gets a comment on the specific cell in the collection.
 		/// </summary>
 		/// <param name="cellAddress">Cell which the comment is on. May be an Excel Range object, or a string. If string, must contain the full address, including the sheet name</param>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentDispatchIds.CommentCollection_ItemByCell)]
 		[ClientCallableOperation(OperationType = OperationType.Read)]
 		Comment GetItemByCell([TypeScriptType("Excel.Range|string")] [RESTfulType(typeof(string))] object cellAddress);
@@ -1797,7 +1797,7 @@ namespace Microsoft.ExcelServices
 	/// <summary>
 	/// Represents a cell comment object in the workbook.
 	/// </summary>
-	[ApiSet(Version = 1.9)]
+	[ApiSet(Version = beta)]
 	[ClientCallableComType(Name = "IComment", InterfaceId = "26625fea-17b2-4e51-bc4c-8f3b2db2f39b", CoClassName = "Comment")]
 	public interface Comment
 	{
@@ -1808,7 +1808,7 @@ namespace Microsoft.ExcelServices
 		/// <summary>
 		/// Represents the comment identifier. Read-only.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[RESTfulNonNullableStringTypeAttribute]
 		[ClientCallableComMember(DispatchId = CommentDispatchIds.Comment_Id)]
 		[JsonStringify()]
@@ -1817,7 +1817,7 @@ namespace Microsoft.ExcelServices
 		/// <summary>
 		/// Represents whether it is a comment thread or reply. Always return true here. Read-only.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentDispatchIds.Comment_IsParent)]
 		[JsonStringify()]
 		bool IsParent { get; }
@@ -1825,7 +1825,7 @@ namespace Microsoft.ExcelServices
 		/// <summary>
 		/// Represents a collection of reply objects associated with the comment. Read-only.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentDispatchIds.Comment_Replies)]
 		[JsonStringify()]
 		CommentReplyCollection Replies { get; }
@@ -1833,14 +1833,14 @@ namespace Microsoft.ExcelServices
 		/// <summary>
 		/// Deletes the comment thread.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentDispatchIds.Comment_Delete)]
 		void Delete();
 
 		/// <summary>
 		/// Get/Set the content.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentDispatchIds.Comment_Content)]
 		[JsonStringify()]
 		string Content { get; set; }
@@ -1867,7 +1867,7 @@ namespace Microsoft.ExcelServices
 	/// <summary>
 	/// Represents a collection of comment reply objects that are part of the comment.
 	/// </summary>
-	[ApiSet(Version = 1.9)]
+	[ApiSet(Version = beta)]
 	[ClientCallableType(CreateItemOperationName = "Add")]
 	[ClientCallableComType(Name = "ICommentReplyCollection", InterfaceId = "e801784e-0dc2-4a88-a3cc-9eff11164fa0", CoClassName = "CommentReplyCollection")]
 	public interface CommentReplyCollection : IEnumerable<CommentReply>
@@ -1880,7 +1880,7 @@ namespace Microsoft.ExcelServices
 		/// Returns a comment reply identified by its ID. Read-only.
 		/// </summary>
 		/// <param name="commentReplyId">The identifier for the comment reply.</param>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReplyCollection_Indexer)]
 		CommentReply this[string commentReplyId] { get; }
 
@@ -1889,7 +1889,7 @@ namespace Microsoft.ExcelServices
 		/// </summary>
 		/// <param name="content">The comment content.</param>
 		/// <param name="contentType">Optional. Type of the comment content</param>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReplyCollection_Add)]
 		CommentReply Add(string content, [Optional] ContentType contentType);
 		
@@ -1897,7 +1897,7 @@ namespace Microsoft.ExcelServices
 		/// Gets a comment reply based on its position in the collection.
 		/// </summary>
 		/// <param name="index">Index value of the object to be retrieved. Zero-indexed.</param>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReplyCollection_ItemAt)]
 		[ClientCallableOperation(OperationType = OperationType.Read)]
 		CommentReply GetItemAt(int index);
@@ -1905,7 +1905,7 @@ namespace Microsoft.ExcelServices
 		/// <summary>
 		/// Gets the number of comment replies in the collection.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReplyCollection_GetCount)]
 		[ClientCallableOperation(OperationType = OperationType.Read)]
 		int GetCount();
@@ -1914,7 +1914,7 @@ namespace Microsoft.ExcelServices
 	/// <summary>
 	/// Represents a cell comment reply object in the workbook.
 	/// </summary>
-	[ApiSet(Version = 1.9)]
+	[ApiSet(Version = beta)]
 	[ClientCallableComType(Name = "ICommentReply", InterfaceId = "aa77db95-97c1-4a72-a80a-9bffe98a0b98", CoClassName = "CommentReply")]
 	public interface CommentReply
 	{
@@ -1925,7 +1925,7 @@ namespace Microsoft.ExcelServices
 		/// <summary>
 		/// Represents the comment reply identifier. Read-only.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[RESTfulNonNullableStringTypeAttribute]
 		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReply_Id)]
 		[JsonStringify()]
@@ -1934,7 +1934,7 @@ namespace Microsoft.ExcelServices
 		/// <summary>
 		/// Represents whether it is a comment thread or reply. Always return false here. Read-only.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReply_IsParent)]
 		[JsonStringify()]
 		bool IsParent { get; }
@@ -1942,14 +1942,14 @@ namespace Microsoft.ExcelServices
 		/// <summary>
 		/// Deletes the comment reply.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReply_Delete)]
 		void Delete();
 	
 		/// <summary>
 		/// Get/Set the content.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReply_Content)]
 		[JsonStringify()]
 		string Content { get; set; }
@@ -1957,7 +1957,7 @@ namespace Microsoft.ExcelServices
 		/// <summary>
 		/// Get its parent comment of this reply.
 		/// </summary>
-		[ApiSet(Version = 1.9)]
+		[ApiSet(Version = beta)]
 		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReply_Parent)]
 		Comment GetParentComment();
 	}

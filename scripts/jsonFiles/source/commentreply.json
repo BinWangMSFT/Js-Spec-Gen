@@ -6,7 +6,7 @@
   "restPath": null,
   "info": {
     "version": "1.1",
-    "reqSet": "1.9",
+    "reqSet": "beta",
     "addinTypes": [
       "Excel"
     ],
@@ -26,7 +26,7 @@
       "enumNameJs": null,
       "isCollection": false,
       "isRelationship": false,
-      "reqSet": "1.9",
+      "reqSet": "beta",
       "isKey": null,
       "notes": null
     },
@@ -38,7 +38,7 @@
       "enumNameJs": null,
       "isCollection": false,
       "isRelationship": false,
-      "reqSet": "1.9",
+      "reqSet": "beta",
       "isKey": null,
       "notes": null
     },
@@ -50,7 +50,7 @@
       "enumNameJs": null,
       "isCollection": false,
       "isRelationship": false,
-      "reqSet": "1.9",
+      "reqSet": "beta",
       "isKey": null,
       "notes": null
     }
@@ -66,7 +66,7 @@
       "notes": null,
       "httpSuccessResponse": null,
       "parameters": null,
-      "reqSet": "1.9"
+      "reqSet": "beta"
     },
     {
       "name": "getParentComment",
@@ -78,7 +78,7 @@
       "notes": null,
       "httpSuccessResponse": null,
       "parameters": null,
-      "reqSet": "1.9"
+      "reqSet": "beta"
     }
   ]
 }

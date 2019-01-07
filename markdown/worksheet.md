@@ -18,7 +18,7 @@ _See property access [examples.](#property-access-examples)_
 | Relationship | Type	|Description| Req. Set|
 |:---------------|:--------|:----------|:----|
 |charts|[ChartCollection](chartcollection.md)|Returns collection of charts that are part of the worksheet. Read-only.|[1.1](../requirement-sets/excel-api-requirement-sets.md)|
-|comments|[CommentCollection](commentcollection.md)|Returns a collection of all the Comments objects on the worksheet. Read-only.|[1.9](../requirement-sets/excel-api-requirement-sets.md)|
+|comments|[CommentCollection](commentcollection.md)|Returns a collection of all the Comments objects on the worksheet. Read-only.|[beta](../requirement-sets/excel-api-requirement-sets.md)|
 |names|[NamedItemCollection](nameditemcollection.md)|Collection of names scoped to the current worksheet. Read-only.|[1.4](../requirement-sets/excel-api-requirement-sets.md)|
 |pivotTables|[PivotTableCollection](pivottablecollection.md)|Collection of PivotTables that are part of the worksheet. Read-only.|[1.3](../requirement-sets/excel-api-requirement-sets.md)|
 |protection|[WorksheetProtection](worksheetprotection.md)|Returns sheet protection object for a worksheet. Read-only.|[1.2](../requirement-sets/excel-api-requirement-sets.md)|

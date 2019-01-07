@@ -26,7 +26,7 @@
       "enumNameJs": null,
       "isCollection": true,
       "isRelationship": true,
-      "reqSet": "1.9",
+      "reqSet": "beta",
       "isKey": null,
       "notes": null
     },

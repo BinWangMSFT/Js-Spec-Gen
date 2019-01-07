@@ -6,7 +6,7 @@
   "restPath": null,
   "info": {
     "version": "1.1",
-    "reqSet": "1.9",
+    "reqSet": "beta",
     "addinTypes": [
       "Excel"
     ],
@@ -26,7 +26,7 @@
       "enumNameJs": null,
       "isCollection": true,
       "isRelationship": false,
-      "reqSet": "1.9",
+      "reqSet": "beta",
       "isKey": null,
       "notes": null
     }
@@ -52,7 +52,7 @@
           "notes": null
         }
       ],
-      "reqSet": "1.9"
+      "reqSet": "beta"
     },
     {
       "name": "add",
@@ -83,7 +83,7 @@
           "notes": null
         }
       ],
-      "reqSet": "1.9"
+      "reqSet": "beta"
     },
     {
       "name": "getItemAt",
@@ -105,7 +105,7 @@
           "notes": null
         }
       ],
-      "reqSet": "1.9"
+      "reqSet": "beta"
     },
     {
       "name": "getCount",
@@ -117,7 +117,7 @@
       "notes": null,
       "httpSuccessResponse": null,
       "parameters": null,
-      "reqSet": "1.9"
+      "reqSet": "beta"
     }
   ]
 }
