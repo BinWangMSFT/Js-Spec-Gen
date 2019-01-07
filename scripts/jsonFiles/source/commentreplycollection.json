@@ -1,0 +1,123 @@
+{
+  "name": "CommentReplyCollection",
+  "description": "Represents a collection of comment reply objects that are part of the comment.",
+  "isCollection": true,
+  "collectionOf": "CommentReply",
+  "restPath": null,
+  "info": {
+    "version": "1.1",
+    "reqSet": "beta",
+    "addinTypes": [
+      "Excel"
+    ],
+    "nameSpace": "Excel",
+    "addinHosts": [
+      "Task pane"
+    ],
+    "title": "Office JavaScript Add-in API",
+    "description": "Office JavaScript Add-in API"
+  },
+  "properties": [
+    {
+      "name": "items",
+      "dataType": "CommentReply[]",
+      "description": "A collection of commentReply objects.",
+      "isReadOnly": true,
+      "enumNameJs": null,
+      "isCollection": true,
+      "isRelationship": false,
+      "reqSet": "beta",
+      "isKey": null,
+      "notes": null
+    }
+  ],
+  "methods": [
+    {
+      "name": "getItem",
+      "returnType": "CommentReply",
+      "description": "Returns a comment reply identified by its ID. Read-only.",
+      "syntax": "commentReplyCollectionObject.getItem(commentReplyId);",
+      "signature": "getItem(commentReplyId: string)",
+      "restfulName": "Item",
+      "notes": null,
+      "httpSuccessResponse": null,
+      "parameters": [
+        {
+          "name": "commentReplyId",
+          "dataType": "string",
+          "isCollection": false,
+          "description": "The identifier for the comment reply.",
+          "isRequired": true,
+          "enumNameJs": null,
+          "notes": null
+        }
+      ],
+      "reqSet": "beta"
+    },
+    {
+      "name": "add",
+      "returnType": "CommentReply",
+      "description": "Creates a comment reply for comment.",
+      "syntax": "commentReplyCollectionObject.add(content, contentType);",
+      "signature": "add(content: string, contentType: ContentType)",
+      "restfulName": "add",
+      "notes": null,
+      "httpSuccessResponse": null,
+      "parameters": [
+        {
+          "name": "content",
+          "dataType": "string",
+          "isCollection": false,
+          "description": "The comment content.",
+          "isRequired": true,
+          "enumNameJs": null,
+          "notes": null
+        },
+        {
+          "name": "contentType",
+          "dataType": "ContentType",
+          "isCollection": false,
+          "description": "Optional. Type of the comment content",
+          "isRequired": false,
+          "enumNameJs": null,
+          "notes": null
+        }
+      ],
+      "reqSet": "beta"
+    },
+    {
+      "name": "getItemAt",
+      "returnType": "CommentReply",
+      "description": "Gets a comment reply based on its position in the collection.",
+      "syntax": "commentReplyCollectionObject.getItemAt(index);",
+      "signature": "getItemAt(index: number)",
+      "restfulName": "ItemAt",
+      "notes": null,
+      "httpSuccessResponse": null,
+      "parameters": [
+        {
+          "name": "index",
+          "dataType": "number",
+          "isCollection": false,
+          "description": "Index value of the object to be retrieved. Zero-indexed.",
+          "isRequired": true,
+          "enumNameJs": null,
+          "notes": null
+        }
+      ],
+      "reqSet": "beta"
+    },
+    {
+      "name": "getCount",
+      "returnType": "int",
+      "description": "Gets the number of comment replies in the collection.",
+      "syntax": "commentReplyCollectionObject.getCount();",
+      "signature": "getCount()",
+      "restfulName": "Count",
+      "notes": null,
+      "httpSuccessResponse": null,
+      "parameters": null,
+      "reqSet": "beta"
+    }
+  ]
+}

@@ -19,6 +19,18 @@
   },
   "properties": [
     {
+      "name": "comments",
+      "dataType": "CommentCollection",
+      "description": "Returns a collection of all the Comments objects on the worksheet.",
+      "isReadOnly": true,
+      "enumNameJs": null,
+      "isCollection": true,
+      "isRelationship": true,
+      "reqSet": "beta",
+      "isKey": null,
+      "notes": null
+    },
+    {
       "name": "charts",
       "dataType": "ChartCollection",
       "description": "Returns collection of charts that are part of the worksheet.",
