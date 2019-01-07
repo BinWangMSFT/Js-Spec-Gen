@@ -45,6 +45,18 @@
       "notes": null
     },
     {
+      "name": "comments",
+      "dataType": "CommentCollection",
+      "description": "Represents a collection of Comments associated with the workbook.",
+      "isReadOnly": true,
+      "enumNameJs": null,
+      "isCollection": true,
+      "isRelationship": true,
+      "reqSet": "1.9",
+      "isKey": null,
+      "notes": null
+    },
+    {
       "name": "functions",
       "dataType": "Functions",
       "description": "Represents Excel application instance that contains this workbook.",

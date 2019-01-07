@@ -1,0 +1,84 @@
+{
+  "name": "CommentReply",
+  "description": "Represents a cell comment reply object in the workbook.",
+  "isCollection": false,
+  "collectionOf": null,
+  "restPath": null,
+  "info": {
+    "version": "1.1",
+    "reqSet": "1.9",
+    "addinTypes": [
+      "Excel"
+    ],
+    "nameSpace": "Excel",
+    "addinHosts": [
+      "Task pane"
+    ],
+    "title": "Office JavaScript Add-in API",
+    "description": "Office JavaScript Add-in API"
+  },
+  "properties": [
+    {
+      "name": "id",
+      "dataType": "string",
+      "description": "Represents the comment reply identifier.",
+      "isReadOnly": true,
+      "enumNameJs": null,
+      "isCollection": false,
+      "isRelationship": false,
+      "reqSet": "1.9",
+      "isKey": null,
+      "notes": null
+    },
+    {
+      "name": "isParent",
+      "dataType": "bool",
+      "description": "Represents whether it is a comment thread or reply. Always return false here.",
+      "isReadOnly": true,
+      "enumNameJs": null,
+      "isCollection": false,
+      "isRelationship": false,
+      "reqSet": "1.9",
+      "isKey": null,
+      "notes": null
+    },
+    {
+      "name": "content",
+      "dataType": "string",
+      "description": "GetSet the content.",
+      "isReadOnly": false,
+      "enumNameJs": null,
+      "isCollection": false,
+      "isRelationship": false,
+      "reqSet": "1.9",
+      "isKey": null,
+      "notes": null
+    }
+  ],
+  "methods": [
+    {
+      "name": "delete",
+      "returnType": "void",
+      "description": "Deletes the comment reply.",
+      "syntax": "commentReplyObject.delete();",
+      "signature": "delete()",
+      "restfulName": "delete",
+      "notes": null,
+      "httpSuccessResponse": null,
+      "parameters": null,
+      "reqSet": "1.9"
+    },
+    {
+      "name": "getParentComment",
+      "returnType": "Comment",
+      "description": "Get its parent comment of this reply.",
+      "syntax": "commentReplyObject.getParentComment();",
+      "signature": "getParentComment()",
+      "restfulName": "ParentComment",
+      "notes": null,
+      "httpSuccessResponse": null,
+      "parameters": null,
+      "reqSet": "1.9"
+    }
+  ]
+}

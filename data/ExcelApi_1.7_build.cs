@@ -86,6 +86,8 @@ namespace Microsoft.ExcelServices
 			internal const double ChartingApi = 1.8;
 
 			internal const double Event = 1.8;
+
+			internal const double CommentAPIs_Beta = 1.9;
 		}
 	}
 
@@ -492,6 +494,7 @@ namespace Microsoft.ExcelServices
 		internal const int Workbook_Range = 19;
 		internal const int Workbook_Test = 20;
 		internal const int Workbook_Name = 21;
+		internal const int Workbook_Comments = 50;
 	}
 
 	/// <summary>
@@ -544,6 +547,14 @@ namespace Microsoft.ExcelServices
 		[ApiSet(Version = 1.5)]
 		[ClientCallableComMember(DispatchId = WorkbookDispatchIds.Workbook_CustomXmlParts)]
 		CustomXmlPartCollection CustomXmlParts { get; }
+
+		/// <summary>
+		/// Represents a collection of Comments associated with the workbook. Read-only.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = WorkbookDispatchIds.Workbook_Comments)]
+		[JsonStringify()]
+		CommentCollection Comments { get; }
 
 		/// <summary>
 		/// Represents Excel application instance that contains this workbook. Read-only.
@@ -642,6 +653,7 @@ namespace Microsoft.ExcelServices
 		internal const int Worksheet_Calculate = 23;
 		internal const int Worksheet_Gridlines = 24;
 		internal const int Worksheet_Headings = 25;
+		internal const int Worksheet_Comments = 60;
 
 		internal const int WorksheetCollection_Indexer = 1;
 		internal const int WorksheetCollection_Add = 2;
@@ -678,6 +690,14 @@ namespace Microsoft.ExcelServices
 	[ClientCallableComType(Name = "IWorksheet", InterfaceId = "b86e5ae1-476e-4e56-825d-885468e549f3", CoClassName = "Worksheet")]
 	public interface Worksheet
 	{
+
+		/// <summary>
+		/// Returns a collection of all the Comments objects on the worksheet. Read-only.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = WorksheetDispatchIds.Worksheet_Comments)]
+		[JsonStringify()]
+		CommentCollection Comments { get; }
 
 		/// <summary>
 		/// Activate the worksheet in the Excel UI.
@@ -1688,6 +1708,262 @@ namespace Microsoft.ExcelServices
 		int GetCount();
 	}
 #endregion
+
+#region Comment
+	internal static class CommentDispatchIds
+	{
+		internal const int CommentCollection_OnAccess = 1;
+		internal const int CommentCollection_Indexer = 2;
+		internal const int CommentCollection_ItemAt = 3;
+		internal const int CommentCollection_GetCount = 4;
+		internal const int CommentCollection_Add = 5;
+		internal const int CommentCollection_ItemByReplyId = 6;
+		internal const int CommentCollection_ItemByCell = 7;
+
+		internal const int Comment_Id = 1;
+		internal const int Comment_Replies = 2;
+		internal const int Comment_OnAccess = 3;
+		internal const int Comment_IsParent = 4;
+		internal const int Comment_Delete = 5;
+		internal const int Comment_Content = 6;
+	}
+
+	/// <summary>
+	/// Represents a collection of comment objects that are part of the workbook.
+	/// </summary>
+	[ApiSet(Version = 1.9)]
+	[ClientCallableType(CreateItemOperationName = "Add")]
+	[ClientCallableComType(Name = "ICommentCollection", InterfaceId = "c5619aec-c9a9-490f-ba4b-1a3d3199d951", CoClassName = "CommentCollection")]
+	public interface CommentCollection : IEnumerable<Comment>
+	{
+		[ClientCallableComMember(DispatchId = CommentDispatchIds.CommentCollection_OnAccess)]
+		[ClientCallableOperation(OperationType = OperationType.Read)]
+		void _OnAccess();
+
+		/// <summary>
+		/// Returns a comment identified by its ID. Read-only.
+		/// </summary>
+		/// <param name="commentId">The identifier for the comment.</param>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentDispatchIds.CommentCollection_Indexer)]
+		Comment this[string commentId] { get; }
+
+		/// <summary>
+		/// Gets a comment based on its position in the collection.
+		/// </summary>
+		/// <param name="index">Index value of the object to be retrieved. Zero-indexed.</param>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentDispatchIds.CommentCollection_ItemAt)]
+		[ClientCallableOperation(OperationType = OperationType.Read)]
+		Comment GetItemAt(int index);
+
+		/// <summary>
+		/// Gets the number of comments in the collection.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentDispatchIds.CommentCollection_GetCount)]
+		[ClientCallableOperation(OperationType = OperationType.Read)]
+		int GetCount();
+
+		/// <summary>
+		/// Creates a new comment(comment thread) based on the cell location and content. Invalid argument will be thrown if the location is larger than one cell.
+		/// </summary>
+		/// <param name="content">The comment content.</param>
+		/// <param name="cellAddress">Cell to insert comment to. May be an Excel Range object, or a string. If string, must contain the full address, including the sheet name</param>
+		/// <param name="contentType">Optional. Type of the comment content</param>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentDispatchIds.CommentCollection_Add)]
+		Comment Add(string content, [TypeScriptType("Excel.Range|string")] [RESTfulType(typeof(string))] object cellAddress, [Optional] ContentType contentType);
+	
+		/// <summary>
+		/// Gets a comment related to its reply ID in the collection.
+		/// </summary>
+		/// <param name="replyId">The identifier of comment reply.</param>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentDispatchIds.CommentCollection_ItemByReplyId)]
+		[ClientCallableOperation(OperationType = OperationType.Read)]
+		Comment GetItemByReplyId(string replyId);
+
+		/// <summary>
+		/// Gets a comment on the specific cell in the collection.
+		/// </summary>
+		/// <param name="cellAddress">Cell which the comment is on. May be an Excel Range object, or a string. If string, must contain the full address, including the sheet name</param>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentDispatchIds.CommentCollection_ItemByCell)]
+		[ClientCallableOperation(OperationType = OperationType.Read)]
+		Comment GetItemByCell([TypeScriptType("Excel.Range|string")] [RESTfulType(typeof(string))] object cellAddress);
+	}
+
+	/// <summary>
+	/// Represents a cell comment object in the workbook.
+	/// </summary>
+	[ApiSet(Version = 1.9)]
+	[ClientCallableComType(Name = "IComment", InterfaceId = "26625fea-17b2-4e51-bc4c-8f3b2db2f39b", CoClassName = "Comment")]
+	public interface Comment
+	{
+		[ClientCallableComMember(DispatchId = CommentDispatchIds.Comment_OnAccess)]
+		[ClientCallableOperation(OperationType = OperationType.Read)]
+		void _OnAccess();
+
+		/// <summary>
+		/// Represents the comment identifier. Read-only.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[RESTfulNonNullableStringTypeAttribute]
+		[ClientCallableComMember(DispatchId = CommentDispatchIds.Comment_Id)]
+		[JsonStringify()]
+		string Id { get; }
+
+		/// <summary>
+		/// Represents whether it is a comment thread or reply. Always return true here. Read-only.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentDispatchIds.Comment_IsParent)]
+		[JsonStringify()]
+		bool IsParent { get; }
+
+		/// <summary>
+		/// Represents a collection of reply objects associated with the comment. Read-only.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentDispatchIds.Comment_Replies)]
+		[JsonStringify()]
+		CommentReplyCollection Replies { get; }
+
+		/// <summary>
+		/// Deletes the comment thread.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentDispatchIds.Comment_Delete)]
+		void Delete();
+
+		/// <summary>
+		/// Get/Set the content.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentDispatchIds.Comment_Content)]
+		[JsonStringify()]
+		string Content { get; set; }
+	}
+#endregion Comment
+
+#region CommentReply
+	internal static class CommentReplyDispatchIds
+	{
+		internal const int CommentReplyCollection_OnAccess = 1;
+		internal const int CommentReplyCollection_Add = 2;
+		internal const int CommentReplyCollection_Indexer = 3;
+		internal const int CommentReplyCollection_ItemAt = 4;
+		internal const int CommentReplyCollection_GetCount = 5;
+
+		internal const int CommentReply_Id = 1;
+		internal const int CommentReply_OnAccess = 2;
+		internal const int CommentReply_Delete = 3;
+		internal const int CommentReply_IsParent = 4;
+		internal const int CommentReply_Content = 5;
+		internal const int CommentReply_Parent = 6;
+	}
+
+	/// <summary>
+	/// Represents a collection of comment reply objects that are part of the comment.
+	/// </summary>
+	[ApiSet(Version = 1.9)]
+	[ClientCallableType(CreateItemOperationName = "Add")]
+	[ClientCallableComType(Name = "ICommentReplyCollection", InterfaceId = "e801784e-0dc2-4a88-a3cc-9eff11164fa0", CoClassName = "CommentReplyCollection")]
+	public interface CommentReplyCollection : IEnumerable<CommentReply>
+	{
+		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReplyCollection_OnAccess)]
+		[ClientCallableOperation(OperationType = OperationType.Read)]
+		void _OnAccess();
+
+		/// <summary>
+		/// Returns a comment reply identified by its ID. Read-only.
+		/// </summary>
+		/// <param name="commentReplyId">The identifier for the comment reply.</param>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReplyCollection_Indexer)]
+		CommentReply this[string commentReplyId] { get; }
+
+		/// <summary>
+		/// Creates a comment reply for comment.
+		/// </summary>
+		/// <param name="content">The comment content.</param>
+		/// <param name="contentType">Optional. Type of the comment content</param>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReplyCollection_Add)]
+		CommentReply Add(string content, [Optional] ContentType contentType);
+		
+		/// <summary>
+		/// Gets a comment reply based on its position in the collection.
+		/// </summary>
+		/// <param name="index">Index value of the object to be retrieved. Zero-indexed.</param>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReplyCollection_ItemAt)]
+		[ClientCallableOperation(OperationType = OperationType.Read)]
+		CommentReply GetItemAt(int index);
+
+		/// <summary>
+		/// Gets the number of comment replies in the collection.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReplyCollection_GetCount)]
+		[ClientCallableOperation(OperationType = OperationType.Read)]
+		int GetCount();
+	}
+
+	/// <summary>
+	/// Represents a cell comment reply object in the workbook.
+	/// </summary>
+	[ApiSet(Version = 1.9)]
+	[ClientCallableComType(Name = "ICommentReply", InterfaceId = "aa77db95-97c1-4a72-a80a-9bffe98a0b98", CoClassName = "CommentReply")]
+	public interface CommentReply
+	{
+		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReply_OnAccess)]
+		[ClientCallableOperation(OperationType = OperationType.Read)]
+		void _OnAccess();
+
+		/// <summary>
+		/// Represents the comment reply identifier. Read-only.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[RESTfulNonNullableStringTypeAttribute]
+		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReply_Id)]
+		[JsonStringify()]
+		string Id { get; }
+
+		/// <summary>
+		/// Represents whether it is a comment thread or reply. Always return false here. Read-only.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReply_IsParent)]
+		[JsonStringify()]
+		bool IsParent { get; }
+
+		/// <summary>
+		/// Deletes the comment reply.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReply_Delete)]
+		void Delete();
+	
+		/// <summary>
+		/// Get/Set the content.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReply_Content)]
+		[JsonStringify()]
+		string Content { get; set; }
+
+		/// <summary>
+		/// Get its parent comment of this reply.
+		/// </summary>
+		[ApiSet(Version = 1.9)]
+		[ClientCallableComMember(DispatchId = CommentReplyDispatchIds.CommentReply_Parent)]
+		Comment GetParentComment();
+	}
+#endregion CommentReply
+
+
 
 #region Settings
 	internal static class SettingsDispatchIds
